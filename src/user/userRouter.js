@@ -11,4 +11,15 @@ UsersRouter
 })
 .catch(next)
 })
+
+UsersRouter
+.get('/:id', (req,res,next)=>{
+    const {id} = req.params
+    UserService.getUserById(req.app.get('db'),id)
+.then(users=>{
+    res.json(users)
+})
+.catch(next)
+})
+
 module.exports= UsersRouter;

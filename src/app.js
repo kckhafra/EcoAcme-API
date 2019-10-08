@@ -10,6 +10,7 @@ const friendRouter = require('./friends/friends-router')
 const messageRouter = require('./messages/messages-router')
 const usersRouter = require('./user/userRouter')
 const app = express()
+const commentRouter = require('./comments/comments-router')
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
@@ -24,6 +25,7 @@ app.use('/api/post', postRouter)
 app.use('/api/friends', friendRouter)
 app.use('/api/messages', messageRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/comments', commentRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

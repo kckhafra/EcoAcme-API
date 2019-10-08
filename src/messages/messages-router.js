@@ -4,7 +4,8 @@ const MessagesService = require('./messages-service')
 const jsonBodyParser = express.json()
 
 MessagesRouter
-.get('/', (req,res,next)=>{
+.route('/')
+.get( (req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
     MessagesService.getAllUserMessages(db,user_id)
@@ -14,7 +15,23 @@ MessagesRouter
         })
         .catch(next)
 })
-.get('/convo', (req,res,next)=>{
+.post(jsonBodyParser,(req,res,next)=>{
+    const db = req.app.get('db')
+    const {sender_id,receiver_id,messages,date_created} = req.body
+    
+    const newMessage = {sender_id,receiver_id,messages,date_created}
+    MessagesService.postMessage(db,newMessage)
+    .then(mess=>{
+        console.log(mess)
+        res.json(mess)
+    })
+
+    .catch(next)
+})
+
+MessagesRouter
+.route('/convo')
+.get((req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
     const {receiver_id}=req.query
@@ -24,6 +41,7 @@ MessagesRouter
         })
         .catch(next)
 })
+
 
 
 module.exports = MessagesRouter

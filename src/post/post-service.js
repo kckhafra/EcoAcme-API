@@ -4,6 +4,7 @@ const PostService = {
         return db
         .from('ecoacme_posts')
         .select('id','user_id','post', 'date_created', 'date_modified','images')
+        .orderBy('id', 'desc')
     }
 }
 
