@@ -26,7 +26,21 @@ const FriendsService = {
         })
         .where('friend_receiver_id', user_id)
         
-    }
+    },
+    postFriends(db,friendMatch){
+        return db
+        .insert(friendMatch)
+        .into('ecoacme_friends')
+    },
+    deleteFriend(db, requestId,receiverId){
+        return db
+        .from('ecoacme_friends')
+        .where('friend_request_id',requestId)
+        .andWhere('friend_receiver_id',receiverId)
+        .orWhere('friend_request_id',receiverId)
+        .andWhere('friend_receiver_id', requestId)
+        .delete()
+    },
 }
 
 module.exports = FriendsService

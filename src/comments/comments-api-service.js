@@ -1,8 +1,12 @@
 const CommentService = {
     getComment(db){
         return db
-        .select('*')
+        .select('ecoacme_comments.*','ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.images','ecoacme_users.profession')
         .from('ecoacme_comments')
+        .join('ecoacme_users', function(){
+            this.on('ecoacme_comments.user_id','=','ecoacme_users.id')
+        })
+        
         
     },
     getCommentByPostId(db,post_id){
@@ -10,6 +14,7 @@ const CommentService = {
         .select('*')
         .from('ecoacme_comments')
         .where('post_id',post_id)
+        
     },
     insertComment(db, newComment) {
         return db
@@ -19,6 +24,18 @@ const CommentService = {
           .then(([comment]) => comment)
           
       },
+    deleteComment(db, commentId){
+        return db
+            .from('ecoacme_comments')
+            .where('id',commentId)
+            .delete()
+    },
+    updateComment(db,updateComment,id){
+        return db
+        .from('ecoacme_comments')
+        .where({id})
+        .update(updateComment)
+    }
 }
 
 module.exports = CommentService

@@ -9,7 +9,7 @@ CREATE TABLE ecoacme_users(
     password TEXT NOT NULL,
     date_created TIMESTAMP DEFAULT now() NOT NULL,
     images TEXT,
-    about_me TEXT NOT NULL,
+    about_me TEXT,
     college TEXT,
     degree TEXT
 );

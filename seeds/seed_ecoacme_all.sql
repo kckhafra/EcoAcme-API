@@ -80,15 +80,15 @@ TRUNCATE
     (2,2,'I want to workout with you. send details'),
     (1,2,'I got you');
 
-    INSERT INTO ecoacme_messages(sender_id, receiver_id, messages, date_created)
-    VALUES
-    (1,2,'What are you doing today','2019-10-04 05:58:19'),
-    (2,1,'about to work out','2019-10-04 06:58:19'),
-    (1,2,'cool. I am trying to come','2019-10-04 07:58:19'),
-    (2,1,'alright','2019-10-04 08:58:19'),
-    (1,2,'see you soon','2019-10-04 09:58:19'),
-    (3,1,'hey','2019-10-04 10:58:19'),
-    (3,2,'Whats up?','2019-10-04 11:58:19');
+    -- INSERT INTO ecoacme_messages(sender_id, receiver_id, messages, date_created)
+    -- VALUES
+    -- (1,2,'What are you doing today','2019-10-04 05:58:19'),
+    -- (2,1,'about to work out','2019-10-04 06:58:19'),
+    -- (1,2,'cool. I am trying to come','2019-10-04 07:58:19'),
+    -- (2,1,'alright','2019-10-04 08:58:19'),
+    -- (1,2,'see you soon','2019-10-04 09:58:19'),
+    -- (3,1,'hey','2019-10-04 10:58:19'),
+    -- (3,2,'Whats up?','2019-10-04 11:58:19');
 
     INSERT INTO ecoacme_friends(friend_request_id, friend_receiver_id)
     VALUES

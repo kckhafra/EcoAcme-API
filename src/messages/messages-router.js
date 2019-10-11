@@ -2,9 +2,11 @@ const express = require('express');
 const MessagesRouter = express.Router();
 const MessagesService = require('./messages-service')
 const jsonBodyParser = express.json()
+const requireAuth = require('../middleware/jwt-auth')
 
 MessagesRouter
 .route('/')
+.all(requireAuth)
 .get( (req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
