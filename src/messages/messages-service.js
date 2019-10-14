@@ -16,7 +16,7 @@ const MessagesService = {
     },
     getMessagesByConvo(db,user_id,receiver_id){
         return db
-        .select('ecoacme_messages.*','ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.user_name','ecoacme_users.images')
+        .select('ecoacme_messages.*','ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.user_name','ecoacme_users.profession','ecoacme_users.images')
         .from('ecoacme_messages')
         .join('ecoacme_users', function(){
             this.on('ecoacme_messages.sender_id','=','ecoacme_users.id')

@@ -6,20 +6,26 @@ const CommentService = {
         .join('ecoacme_users', function(){
             this.on('ecoacme_comments.user_id','=','ecoacme_users.id')
         })
+        .orderBy('date_created', 'desc')
         
         
     },
-    getCommentByPostId(db,post_id){
+    getCommentById(db,comm_id){
         return db
-        .select('*')
+        .select('ecoacme_comments.*','ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.images','ecoacme_users.profession')
         .from('ecoacme_comments')
-        .where('post_id',post_id)
+        .where('ecoacme_comments.id',comm_id)
+        .join('ecoacme_users', function(){
+            this.on('ecoacme_comments.user_id','=','ecoacme_users.id')
+        })
+        
         
     },
     insertComment(db, newComment) {
         return db
           .insert(newComment)
           .into('ecoacme_comments')
+
           .returning('*')
           .then(([comment]) => comment)
           

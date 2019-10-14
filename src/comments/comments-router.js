@@ -38,19 +38,27 @@ commentRouter
       .catch(next)
     })
 
-commentRouter
-  .route('/by_post/:post_id')
-  .all(requireAuth)
-  .get((req,res,next)=>{
-      const {post_id} = req.params
-      CommentsService.getCommentByPostId(req.app.get('db'),post_id)
-      .then(comm=>{
-        res.json(comm)
-        })
-        .catch(next)
-    })
+// commentRouter
+//   .route('/by_post/:post_id')
+//   .all(requireAuth)
+//   .get((req,res,next)=>{
+//       const {post_id} = req.params
+//       CommentsService.getCommentByPostId(req.app.get('db'),post_id)
+//       .then(comm=>{
+//         res.json(comm)
+//         })
+//         .catch(next)
+//     })
 commentRouter
   .route('/:comment_id')
+  .get((req,res,next)=>{
+    const {comment_id} = req.params
+    CommentsService.getCommentById(req.app.get('db'),comment_id)
+    .then(comm=>{
+      res.json({comm: comm[0]})
+  })
+  .catch(next)
+  })
   .delete(jsonBodyParser,(req,res,next)=>{
     const db = req.app.get('db')
     const {comment_id} = req.params
@@ -60,6 +68,7 @@ commentRouter
             res.status(201).end()
         })
         .catch(next)
+  
 
   })
   .patch(jsonBodyParser,(req,res,next)=>{
