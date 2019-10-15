@@ -6,12 +6,12 @@ const requireAuth = require('../middleware/jwt-auth')
 
 FriendsRouter
     .route('/')
-    .all(requireAuth)
+    // .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {user_id}= req.query
         console.log(user_id)
-        FriendsService.getAllFriends(db)
+        FriendsService.getAllFriends(db,user_id)
             .then(friends=>{
                 res.json(friends)
             })
@@ -23,7 +23,7 @@ FriendsRouter
         const friendMatch = {friend_request_id,friend_receiver_id}
         FriendsService.postFriends(db,friendMatch)
             .then(friends=>{
-                res.status(201).end()
+                res.json(friends)
             })
             .catch(next)
     })
@@ -41,7 +41,7 @@ FriendsRouter
 
 FriendsRouter
     .route('/request')
-    .all(requireAuth)
+    // .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {user_id}= req.query
@@ -55,7 +55,7 @@ FriendsRouter
 
 FriendsRouter
     .route('/receiver')
-    .all(requireAuth)
+    // .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {user_id}= req.query
