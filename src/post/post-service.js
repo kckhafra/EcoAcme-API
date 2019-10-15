@@ -14,7 +14,7 @@ const PostService = {
         return db
         .from('ecoacme_posts')
         // .select('*')
-        .select('ecoacme_posts.id','ecoacme_posts.user_id','ecoacme_posts.post', 'ecoacme_posts.date_created','ecoacme_posts.images', 'ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.images','ecoacme_users.profession')
+        .select('ecoacme_posts.id','ecoacme_posts.user_id','ecoacme_posts.post', 'ecoacme_posts.date_created','ecoacme_posts.post_images', 'ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.images','ecoacme_users.profession')
         .join('ecoacme_users', function(){
             this.on('ecoacme_posts.user_id','=','ecoacme_users.id')
         })
