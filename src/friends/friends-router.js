@@ -6,7 +6,7 @@ const requireAuth = require('../middleware/jwt-auth')
 
 FriendsRouter
     .route('/')
-    // .all(requireAuth)
+    .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {user_id}= req.query
@@ -41,7 +41,7 @@ FriendsRouter
 
 FriendsRouter
     .route('/request')
-    // .all(requireAuth)
+    .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {user_id}= req.query
@@ -55,7 +55,7 @@ FriendsRouter
 
 FriendsRouter
     .route('/receiver')
-    // .all(requireAuth)
+    .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {user_id}= req.query

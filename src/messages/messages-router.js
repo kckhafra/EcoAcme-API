@@ -33,6 +33,7 @@ MessagesRouter
 
 MessagesRouter
 .route('/convo')
+.all(requireAuth)
 .get((req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query

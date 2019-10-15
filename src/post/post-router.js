@@ -7,7 +7,7 @@ const jsonBodyParser = express.json()
 
 postRouter
     .route('/')
-    
+    .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         PostService.getAllPost(db)
@@ -29,6 +29,7 @@ postRouter
 
 postRouter
     .route('/:postId')
+    .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {postId}=req.params

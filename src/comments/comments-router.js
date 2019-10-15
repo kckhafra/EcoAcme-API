@@ -51,6 +51,7 @@ commentRouter
 //     })
 commentRouter
   .route('/:comment_id')
+  .all(requireAuth)
   .get((req,res,next)=>{
     const {comment_id} = req.params
     CommentsService.getCommentById(req.app.get('db'),comment_id)
