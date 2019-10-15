@@ -76,7 +76,7 @@ TRUNCATE
         'https://image.shutterstock.com/image-photo/isolated-shot-young-handsome-male-260nw-762790210.jpg'
     );
 
-    INSERT INTO ecoacme_posts(user_id, post, images)
+    INSERT INTO ecoacme_posts(user_id, post, post_images)
     VALUES
     (1,'Health festival is on its way. Lets get it', 'http://4.bp.blogspot.com/-_p7dg6EquBg/VMqUrn-pEiI/AAAAAAAAlUc/xOGYMsRqbJo/s1600/health%2Bfest%2Bposter.jpg'),
     (1, 'Workout this Wednesday.',null),
