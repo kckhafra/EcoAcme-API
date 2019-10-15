@@ -22,5 +22,5 @@ CREATE TABLE ecoacme_messages(
     receiver_id INTEGER REFERENCES ecoacme_users(id),
     messages TEXT NOT NULL,
     date_created TIMESTAMP DEFAULT now() NOT NULL
-
 );
+
