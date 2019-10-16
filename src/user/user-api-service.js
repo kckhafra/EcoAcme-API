@@ -39,5 +39,13 @@ const UserService = {
             return 'Password must not start or end with empty spaces'
           }
       },
+      updateUser(db,userId,updateAbout){
+        return db
+        .from('ecoacme_users')
+        .where('id',userId)
+        .update(updateAbout)
+        .returning("*")
+
+      }
 }
 module.exports = UserService

@@ -7,7 +7,7 @@ const jsonBodyParser = express.json()
 
 postRouter
     .route('/')
-    .all(requireAuth)
+    // .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         PostService.getAllPost(db)
@@ -18,8 +18,8 @@ postRouter
     })
     .post(jsonBosyParser,(req,res,next)=>{
         const db = req.app.get('db')
-        const {post,user_id,images} = req.body
-        const newPost = {post,user_id,images}
+        const {post,user_id,post_images} = req.body
+        const newPost = {post,user_id,post_images}
         PostService.insertPost(db, newPost)
         .then(post=>{
             res.json({post:post[0]})
@@ -29,7 +29,7 @@ postRouter
 
 postRouter
     .route('/:postId')
-    .all(requireAuth)
+    // .all(requireAuth)
     .get((req,res,next)=>{
         const db = req.app.get('db')
         const {postId}=req.params
@@ -51,8 +51,8 @@ postRouter
     .patch(jsonBodyParser,(req,res,next)=>{
         const db = req.app.get('db')
         const {postId}=req.params
-        const {post,images} = req.body
-        updatePost = {post,images}
+        const {post,post_images} = req.body
+        updatePost = {post,post_images}
         PostService.updatePost(db,postId,updatePost)
         .then(updatePost=>{
             res.json({updatePost:updatePost[0]})
