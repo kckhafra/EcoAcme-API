@@ -33,7 +33,19 @@ const MessagesService = {
         .insert(newMessage)
         .into('ecoacme_messages')
         .returning('*')
-    }
+    },
+    getMessagesById(db,id){
+        return db
+        .select('ecoacme_messages.*','ecoacme_users.first_name','ecoacme_users.last_name','ecoacme_users.user_name','ecoacme_users.profession','ecoacme_users.images')
+        .from('ecoacme_messages')
+        .join('ecoacme_users', function(){
+            this.on('ecoacme_messages.receiver_id','=','ecoacme_users.id')
+        })
+        .where('ecoacme_messages.id', id)
+        
+        
+        
+    },
 }
 
 module.exports = MessagesService

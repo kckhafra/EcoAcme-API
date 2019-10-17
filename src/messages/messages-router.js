@@ -6,7 +6,7 @@ const requireAuth = require('../middleware/jwt-auth')
 
 MessagesRouter
 .route('/')
-.all(requireAuth)
+// .all(requireAuth)
 .get( (req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
@@ -19,13 +19,13 @@ MessagesRouter
 })
 .post(jsonBodyParser,(req,res,next)=>{
     const db = req.app.get('db')
-    const {sender_id,receiver_id,messages,date_created} = req.body
+    const {sender_id,receiver_id,messages} = req.body
     
-    const newMessage = {sender_id,receiver_id,messages,date_created}
+    const newMessage = {sender_id,receiver_id,messages}
     MessagesService.postMessage(db,newMessage)
     .then(mess=>{
         console.log(mess)
-        res.json(mess)
+        res.json(mess[0])
     })
 
     .catch(next)
@@ -33,7 +33,7 @@ MessagesRouter
 
 MessagesRouter
 .route('/convo')
-.all(requireAuth)
+// .all(requireAuth)
 .get((req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
@@ -41,6 +41,19 @@ MessagesRouter
     MessagesService.getMessagesByConvo(db,user_id,receiver_id)
         .then(message=>{
             res.json(message)
+        })
+        .catch(next)
+})
+
+MessagesRouter
+.route('/:id')
+// .all(requireAuth)
+.get( (req,res,next)=>{
+    const db = req.app.get('db')
+    const {id}= req.params
+    MessagesService.getMessagesById(db,id)
+        .then(message=>{
+            res.json(message[0])
         })
         .catch(next)
 })
