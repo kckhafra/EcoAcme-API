@@ -8,18 +8,29 @@ const path = require('path')
 UsersRouter
 .route('/')
 .get( (req,res,next)=>{
-    UserService.getAllUsers(req.app.get('db'))
-.then(users=>{
-    res.json(users)
+    const {search_term} = req.query
+    if(!req.query.search_term){
+        UserService.getAllUsers(req.app.get('db'))
+        .then(users=>{
+            res.json(users)
+        })
+        .catch(next)
+    }else{
+        UserService.searchUsers(req.app.get('db'),search_term)
+        .then(users=>{
+            res.json(users)
+        })
+        .catch(next)
+    }
 })
-.catch(next)
-})
+
 
 .post(jsonBodyParser, (req,res,next)=>{
     const {first_name,last_name,email,profession,profession_years,user_name,images,college,degree,password}=req.body
     const newUser= {first_name,last_name,email,profession,profession_years,user_name,images,college,degree}
     const db = req.app.get('db')
     const passwordError = UserService.validatePassword(password)
+    
     
     if(passwordError) return res.status(400).json({error: passwordError})
     

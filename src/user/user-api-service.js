@@ -19,6 +19,14 @@ const UserService = {
         .select('*')
         .where('id',user_id)
     },
+    searchUsers(db, searchTerm){
+      return db
+      .select('*')
+      .from('ecoacme_users')
+      .where('user_name', 'ILIKE', `%${searchTerm}%`)
+      .orWhere('first_name', 'ILIKE', `%${searchTerm}%` )
+      .orWhere('last_name', 'ILIKE', `%${searchTerm}%`)
+  },
     postUser(db,user){
         return db
         .insert(user)
