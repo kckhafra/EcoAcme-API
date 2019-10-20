@@ -1,26 +1,54 @@
-# Express Boilerplate!
+# EcoAcme
+- Returns json data about all post, comments, users and friends
+- Returns json data and post data for a specific comment, user, post and friend. 
+- Returns data that has been edited
 
-This is a boilerplate project used for starting new projects!
 
-## Set up
+## URL
+- /api/login
+- /api/post
+- /api/friends
+- /api/messages
+- /api/users
+- - /api/comments
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Method:
+- GET
+- POST
+- DELETE
+- PATCH
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## Data Params
+#### Login Credentials Payload
+- {username: "kckhafra", password: "studyhard"}
+#### Post Payload
+- { date_created: "2019-10-16T23:25:26.178Z",
+first_name: "Kuntcheramen",
+id: 1,
+images: "https://raw.githubusercontent.com/kckhafra/KC-Portfolio/master/Pictures/IMG-KC-headshot.JPG",
+last_name: "Khafra",
+post: "Health festival is on its way. Lets get it",
+post_images: "http://4.bp.blogspot.com/-_p7dg6EquBg/VMqUrn-pEiI/AAAAAAAAlUc/xOGYMsRqbJo/s1600/health%2Bfest%2Bposter.jpg",
+profession: "Teacher",
+user_id: 1}
 
-## Scripts
+## Success Response: 
+- Code: 200
+- Content: {  date_created: "2019-10-16T23:25:26.178Z",
+first_name: "Kuntcheramen",
+id: 1,
+images: "https://raw.githubusercontent.com/kckhafra/KC-Portfolio/master/Pictures/IMG-KC-headshot.JPG",
+last_name: "Khafra",
+post: "Health festival is on its way. Lets get it",
+post_images: "http://4.bp.blogspot.com/-_p7dg6EquBg/VMqUrn-pEiI/AAAAAAAAlUc/xOGYMsRqbJo/s1600/health%2Bfest%2Bposter.jpg",
+profession: "Teacher",
+user_id: 1}
 
-Start the application `npm start`
+## Error Response
+- Code: 404 NOT FOUND
+Content {error: "Wrong user name or password"}
+OR
+- Code: 401 UNAUTHORIZED
+Content: {error: "unauthorized to make request"}
 
-Start nodemon for the application `npm run dev`
 
-Run the tests `npm test`
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
