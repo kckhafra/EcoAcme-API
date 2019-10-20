@@ -10,7 +10,7 @@
 - /api/friends
 - /api/messages
 - /api/users
-- - /api/comments
+- /api/comments
 
 ## Method:
 - GET
