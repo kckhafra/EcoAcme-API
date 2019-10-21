@@ -30,7 +30,7 @@ UsersRouter
     const newUser= {first_name,last_name,email,profession,profession_years,user_name,images,college,degree}
     const db = req.app.get('db')
     const passwordError = UserService.validatePassword(password)
-    
+
     
     if(passwordError) return res.status(400).json({error: passwordError})
     
@@ -98,7 +98,3 @@ UsersRouter
 
 module.exports= UsersRouter;
 
-// bcrypt.hash(req.body.password, 12)
-// .then((hash)=>{}) 
-// newUser.password=hash
-// return newUser

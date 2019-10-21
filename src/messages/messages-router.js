@@ -6,7 +6,7 @@ const requireAuth = require('../middleware/jwt-auth')
 
 MessagesRouter
 .route('/')
-// .all(requireAuth)
+.all(requireAuth)
 .get( (req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
@@ -33,7 +33,7 @@ MessagesRouter
 
 MessagesRouter
 .route('/convo')
-// .all(requireAuth)
+.all(requireAuth)
 .get((req,res,next)=>{
     const db = req.app.get('db')
     const {user_id}= req.query
@@ -47,7 +47,7 @@ MessagesRouter
 
 MessagesRouter
 .route('/:id')
-// .all(requireAuth)
+.all(requireAuth)
 .get( (req,res,next)=>{
     const db = req.app.get('db')
     const {id}= req.params
