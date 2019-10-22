@@ -38,17 +38,6 @@ commentRouter
       .catch(next)
     })
 
-// commentRouter
-//   .route('/by_post/:post_id')
-//   .all(requireAuth)
-//   .get((req,res,next)=>{
-//       const {post_id} = req.params
-//       CommentsService.getCommentByPostId(req.app.get('db'),post_id)
-//       .then(comm=>{
-//         res.json(comm)
-//         })
-//         .catch(next)
-//     })
 commentRouter
   .route('/:comment_id')
   .all(requireAuth)
